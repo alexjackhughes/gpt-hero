@@ -19,3 +19,7 @@ To run, just install the dependencies and run using these commands:
 npm install
 npm run dev
 ```
+
+You'll need to create an account with [API Ninja](https://api-ninjas.com/) to get an API key.
+
+You'll also need to create an `.env` file and set the variable `NEXT_PUBLIC_API_KEY=`.
