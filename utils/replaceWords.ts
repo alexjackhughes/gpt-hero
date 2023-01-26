@@ -1,20 +1,28 @@
+import { removePunctuation, replaceWord } from "./punctuation";
 import { stringToWords } from "./stringToArray";
 
 export async function replaceWords(string: string): Promise<string> {
   let words = stringToWords(string);
 
-  for (let i = 0; i < words.length; i++) {
-    if (Math.random() < 0.3) {
-      return await findSynonym(words[i]);
-    }
-  }
+  const newWords = await Promise.all(
+    words.map(async (word) => {
+      if (Math.random() < 0.1) {
+        const unpunctuatedWord = removePunctuation(word);
+        const synonym = await findSynonym(unpunctuatedWord);
 
-  return words.join(" ");
+        return replaceWord(word, unpunctuatedWord, synonym || unpunctuatedWord);
+      }
+
+      return word;
+    })
+  );
+
+  return newWords.join(" ");
 }
 
-const findSynonym = async (string: string): Promise<string> => {
+const findSynonym = async (word: string): Promise<string> => {
   let response = await fetch(
-    `https://api.api-ninjas.com/v1/thesaurus?word=${string}`,
+    `https://api.api-ninjas.com/v1/thesaurus?word=${word}`,
     {
       method: "GET",
       headers: {
@@ -24,9 +32,11 @@ const findSynonym = async (string: string): Promise<string> => {
   );
   let data = await response.json();
 
-  if (data.synonyms) {
-    return data.synonyms[Math.floor(Math.random() * data.synonyms.length)];
+  if (data.synonyms as string[]) {
+    const synonym: string =
+      data.synonyms[Math.floor(Math.random() * data.synonyms.length)];
+    if (synonym) return synonym.split("_").join(" ").toLocaleLowerCase();
   }
 
-  return "";
+  return word;
 };
