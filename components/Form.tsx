@@ -15,13 +15,15 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
   };
 
   return (
-    <form className="flex flex-col w-full my-14" onSubmit={handleSubmit}>
+    <form className="flex flex-col w-full h-full py-14" onSubmit={handleSubmit}>
       <TextArea
         text={text}
         onChange={setText}
         placeholder="Paste in your text"
       />
-      <Button onClick={() => onSubmit(text)} />
+      <div className="w-full mt-4">
+        <Button>SUBMIT</Button>
+      </div>
     </form>
   );
 };

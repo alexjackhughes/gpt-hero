@@ -1,10 +1,20 @@
 import React from "react";
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
+  children: React.ReactNode;
 }
-const Button: React.FC<Props> = ({ onClick }) => {
-  return <button onClick={onClick}>Submit</button>;
+
+const Button: React.FC<Props> = ({ onClick, children }) => {
+  return (
+    <button
+      type="submit"
+      className="inline-flex items-center px-6 py-3 text-base font-medium text-center text-white border border-transparent rounded-md shadow-sm bg-gradient-to-br from-emerald-400 to-emerald-500 hover:bg-emerald-700 border-emerald-500 focus:ring-4 focus:ring-emerald-300 focus:outline-none focus:border-emerald-500"
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default Button;
