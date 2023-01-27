@@ -17,6 +17,7 @@ export const generateText = async (text: string) => {
 
   // This data is a ReadableStream
   const data = response.body;
+
   if (!data) {
     return;
   }

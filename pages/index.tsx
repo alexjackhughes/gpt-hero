@@ -10,10 +10,10 @@ const Home: NextPage = () => {
   const [text, setText] = useState<string>();
 
   const onSubmit = async (text: string) => {
-    const newText = await replaceWords(text);
-    const regeneratedText = await generateText(newText);
+    const regeneratedText = await generateText(text);
+    const synonymedText = await replaceWords(regeneratedText || text);
 
-    setText(regeneratedText);
+    setText(synonymedText);
   };
 
   return (
@@ -28,9 +28,22 @@ const Home: NextPage = () => {
           {text ? (
             <div className="mt-10">
               <p className="text-lg font-bold text-emerald-500">
-                GENERATED TEXT
+                TRANSFIGURED TEXT
               </p>
               <p className="text-lg text-slate-500">{text}</p>
+              <p className="pt-3 mt-5 text-lg border-t text-slate-500 border-slate-800">
+                You can check your new perplexity by copy + pasting the text
+                above{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold text-emerald-500"
+                  href="https://etedward-gptzero-main-zqgfwb.streamlit.app/"
+                >
+                  over here
+                </a>
+                .
+              </p>
             </div>
           ) : (
             <Form onSubmit={onSubmit} />
