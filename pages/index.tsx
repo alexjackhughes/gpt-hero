@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Form from "../components/Form";
+import { generateText } from "../utils/generateText";
 import { replaceWords } from "../utils/replaceWords";
 
 const Home: NextPage = () => {
@@ -10,7 +11,9 @@ const Home: NextPage = () => {
 
   const onSubmit = async (text: string) => {
     const newText = await replaceWords(text);
-    setText(newText);
+    const regeneratedText = await generateText(newText);
+
+    setText(regeneratedText);
   };
 
   return (

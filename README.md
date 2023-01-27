@@ -13,8 +13,10 @@ Here's what I have working so far:
 - ~~Create an app that takes in text~~
 - ~~Make it look pretty~~
 - ~~Replace some words using synonyms~~
-- Create a prompt with GPT that specifically targets perplexity and burstiness of text
+- ~~Create a prompt with GPT that specifically targets perplexity and burstiness of text~~
 - Build some kind of measure of the perplexity before and after transfiguration
+- Fix the env variable issue
+- Spice up the design a bit
 - Push it live
 
 ## Concepts
@@ -34,4 +36,4 @@ npm run dev
 
 You'll need to create an account with [API Ninja](https://api-ninjas.com/) to get an API key.
 
-You'll also need to create an `.env` file and set the variable `NEXT_PUBLIC_API_KEY=`.
+You'll also need to create an `.env` file and set the variable `NEXT_PUBLIC_NINJA_API_KEY=`.

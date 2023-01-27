@@ -26,7 +26,7 @@ const findSynonym = async (word: string): Promise<string> => {
     {
       method: "GET",
       headers: {
-        "X-Api-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+        "X-Api-Key": process.env.NEXT_PUBLIC_NINJA_API_KEY || "",
       },
     }
   );
